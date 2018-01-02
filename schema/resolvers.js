@@ -1,7 +1,6 @@
 const Link = require('../models/Link')
 const Pub = require('../models/Pub')
-
-
+const ios_model = require('../models/ios_model')
 
 const alcohol = function(id, type) {
     this.id = id;
@@ -44,8 +43,42 @@ const allTableList = [{
     }
 ]
 
+var allConferenceList = [{
+    id: 1,
+    name: "test conference 1",
+    city: "delhi",
+    year: "2018",
+    attendees: [{
+            id: 1,
+            name: "shubham"
+        },
+        {
+            id: 2,
+            name: "shukla"
+        }
+    ]
+}]
 
+data = [{
+    id: 1,
+    name: "test conference 1",
+    city: "delhi",
+    year: "2018",
+    attendees: [{
+            id: 1,
+            name: "shubham"
+        },
+        {
+            id: 2,
+            name: "shukla"
+        }
+    ]
+}]
 
+var allAttendeeList = [{
+    id: 1,
+    name: "shubham"
+}]
 
 module.exports = {
     Query: {
@@ -54,7 +87,19 @@ module.exports = {
         }),
         allAlcohol: () => alcoholList,
         allOrder: () => allOrderList,
-        allTable: () => allTableList
+        allTable: () => allTableList,
+        allConference: () => ios_model.Conference.find({}, function(err, docs) {
+            return docs
+        }),
+        ConferenceDetails: async function(_, data) {
+            conference = []
+            await ios_model.Conference.findOne({
+                conference_id: data.id
+            }).then((data) => {
+                conference.push(data)
+            })
+            return conference
+        }
     },
     Mutation: {
         createLink: (_, data) => {
@@ -64,6 +109,16 @@ module.exports = {
             })
             return link
 
+        },
+        createConference: (_, data) => {
+            const newconference = Object.assign({ id: allConferenceList.length + 1 }, data);
+            allConferenceList.push(newconference)
+            return newconference
+        },
+        createAttendee: (_, data) => {
+            const newAttendee = Object.assign({ id: allAttendeeList.length + 1 }, data);
+            allAttendeeList.push(newAttendee)
+            return newAttendee
         }
     }
 };

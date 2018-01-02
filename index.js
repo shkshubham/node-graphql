@@ -13,13 +13,12 @@ mongoose.connect(keys.mongodb.url, () => {
     console.log("connected to db");
 });
 
-
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/graphql', graphqlExpress({ schema }))
 app.use('/graphiql', graphiqlExpress({
     endpointURL: '/graphql',
 }))
 const server_port = process.env.PORT || 3000;
-app.listen(server_port, function(){
-  console.log("server started");
+app.listen(server_port, function() {
+    console.log("server started");
 });

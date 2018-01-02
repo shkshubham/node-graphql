@@ -28,7 +28,20 @@ const typeDefs = `
     name: String!
     email: String
   }
-
+  type Conference {
+    id: ID!,
+    conference_id: Int!
+    name: String!
+    city: String!
+    year: String!
+    attendees: [Attendee!]
+  }
+  
+  type Attendee {
+    id: ID!
+    name: String!
+    conferences: [Conference!]
+  }
   input AuthProviderSignupData {
     email: AUTH_PROVIDER_EMAIL
   }
@@ -41,12 +54,17 @@ const typeDefs = `
       allLinks: [Link!]!,
       allAlcohol: [Alcohol!],
       allOrder: [Order!],
-      allTable: [Table!]
+      allTable: [Table!],
+      allConference:[Conference!],
+      ConferenceDetails(id: ID):[Conference]
   }
 
   type Mutation {
     createLink(url: String!, description: String!): Link,
-    createUser(name: String!, authProvider: AuthProviderSignupData!): User
+    createUser(name: String!, authProvider: AuthProviderSignupData!): User,
+    createConference(name: String!, city: String!, year: String!): Conference,
+    createAttendee(name: String!): Attendee,
+    
   }
 `;
 
