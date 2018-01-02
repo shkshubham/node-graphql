@@ -1,9 +1,6 @@
 const Link = require('../models/Link')
 const Pub = require('../models/Pub')
 
-var table = new Pub.Table({
-
-})
 table.save(function(err, docs) {
     if (err) return handleError(err);
 
