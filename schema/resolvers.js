@@ -1,10 +1,7 @@
 const Link = require('../models/Link')
 const Pub = require('../models/Pub')
 
-table.save(function(err, docs) {
-    if (err) return handleError(err);
 
-})
 
 const alcohol = function(id, type) {
     this.id = id;
