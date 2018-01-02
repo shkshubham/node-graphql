@@ -59,21 +59,6 @@ var allConferenceList = [{
     ]
 }]
 
-data = [{
-    id: 1,
-    name: "test conference 1",
-    city: "delhi",
-    year: "2018",
-    attendees: [{
-            id: 1,
-            name: "shubham"
-        },
-        {
-            id: 2,
-            name: "shukla"
-        }
-    ]
-}]
 
 var allAttendeeList = [{
     id: 1,
@@ -110,14 +95,32 @@ module.exports = {
             return link
 
         },
-        createConference: (_, data) => {
-            const newconference = Object.assign({ id: allConferenceList.length + 1 }, data);
-            allConferenceList.push(newconference)
+        createConference: async(_, data) => {
+            var conferenceList = []
+            await ios_model.Conference.find({}, function(err, docs) {
+                conferenceList = docs
+            })
+            console.log(conferenceList)
+            var conference = Object.assign({ conference_id: conferenceList.length + 1 }, data)
+
+            var newconference = new ios_model.Conference(conference)
+            newconference.save(function(err, conference) {
+                if (err) return handleError(err);
+            })
             return newconference
         },
-        createAttendee: (_, data) => {
-            const newAttendee = Object.assign({ id: allAttendeeList.length + 1 }, data);
-            allAttendeeList.push(newAttendee)
+        createAttendee: async(_, data) => {
+            var attendeeList = []
+            await ios_model.Attendee.find({}, function(err, docs) {
+                attendeeList = docs
+            })
+            console.log(attendeeList)
+            var attendee = Object.assign({ attendee_id: attendeeList.length + 1 }, data)
+
+            var newAttendee = new ios_model.Attendee(attendee)
+            newAttendee.save(function(err, attendee) {
+                if (err) return handleError(err);
+            })
             return newAttendee
         }
     }
