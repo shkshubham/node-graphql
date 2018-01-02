@@ -19,7 +19,7 @@ app.use('/graphql', graphqlExpress({ schema }))
 app.use('/graphiql', graphiqlExpress({
     endpointURL: '/graphql',
 }))
-const PORT = 3000
-app.listen(PORT, () => {
-    console.log(`Node for GraphQL server running on port ${PORT}.`)
-})
+const server_port = process.env.PORT || 3000;
+app.listen(server_port, function(){
+  console.log("server started");
+});
