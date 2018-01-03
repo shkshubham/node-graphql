@@ -79,7 +79,7 @@ module.exports = {
         ConferenceDetails: async function(_, data) {
             conference = []
             await ios_model.Conference.findOne({
-                conference_id: data.id
+                _id: data.id
             }).then((data) => {
                 conference.push(data)
             })
@@ -87,13 +87,23 @@ module.exports = {
         },
 
         Conference: async function(_, data) {
+            console.log(data)
             conference = []
             await ios_model.Conference.findOne({
-                conference_id: data.id
+                _id: data.id
             }).then((data) => {
                 conference.push(data)
             })
             return conference
+        },
+        Attendee: async function(_, data) {
+            attendee = []
+            await ios_model.Attendee.findOne({
+                _id: data.id
+            }).then((data) => {
+                attendee.push(data)
+            })
+            return attendee
         },
     },
     Mutation: {
@@ -134,7 +144,25 @@ module.exports = {
             return newAttendee
         },
         updateConference: async(_, data) => {
-            conference = await ios_model.Conference.update({ conference_id: data.id }, data, function(err, raw) {
+            conference = await ios_model.Conference.update({ _id: data.id }, data, function(err, raw) {
+                if (err) {
+                    console.log(err)
+                }
+                console.log(raw)
+            });
+            return data
+        },
+        deleteConference: async(_, data) => {
+            deleted_conference = []
+            await ios_model.Conference.findByIdAndRemove(data.id, (err, data) => {
+                console.log(data)
+                deleted_conference.push(data)
+                console.log(deleted_conference)
+            });
+            return deleted_conference
+        },
+        updateAttendee: async(_, data) => {
+            attendee = await ios_model.Attendee.update({ _id: data.id }, data, function(err, raw) {
                 if (err) {
                     console.log(err)
                 }
@@ -142,5 +170,6 @@ module.exports = {
             });
             return data
         }
+
     }
 }
