@@ -73,7 +73,7 @@ module.exports = {
         allAlcohol: () => alcoholList,
         allOrder: () => allOrderList,
         allTable: () => allTableList,
-        allConference: () => ios_model.Conference.find({}, function(err, docs) {
+        allConferences: () => ios_model.Conference.find({}, function(err, docs) {
             return docs
         }),
         ConferenceDetails: async function(_, data) {

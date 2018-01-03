@@ -55,7 +55,7 @@ const typeDefs = `
       allAlcohol: [Alcohol!],
       allOrder: [Order!],
       allTable: [Table!],
-      allConference:[Conference!],
+      allConferences:[Conference!],
       ConferenceDetails(id: ID):[Conference]
   }
 
