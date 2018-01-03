@@ -17,5 +17,6 @@ module.exports = {
         deleteConference: ConferenceResolver.remove,
         updateAttendee: AttendeeResolver.update,
         deleteAttendee: AttendeeResolver.remove,
+        addAttendeeToConference: ConferenceResolver.addAddenteeToConference
     }
 }

@@ -12,7 +12,6 @@ const ConferenceSchema = new Schema({
 const AttendeeSchema = new Schema({
     attendee_id: Number,
     name: String,
-    conferences: []
 });
 
 

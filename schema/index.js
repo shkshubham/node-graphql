@@ -14,7 +14,6 @@ const typeDefs = `
   type Attendee {
     id: ID!
     name: String!
-    conferences: [Conference!]
   }
   type Query{
       allConferences:[Conference!],
@@ -26,11 +25,12 @@ const typeDefs = `
 
   type Mutation {
     createConference(name: String!, city: String!, year: String!): Conference,
-    createAttendee(name: String!): Attendee,
+    createAttendee(name: String!, conference_id:String): Attendee,
     updateConference(id:String!,name: String, city: String, year: String): Conference,
     deleteConference(id:String!): Conference,
     deleteAttendee(id:String!): Attendee,    
-    updateAttendee(id:ID!,name: String): Attendee
+    updateAttendee(id:String!,conference_id:String,name: String): Attendee,
+    addAttendeeToConference(id:String!,conference_id:String!): Attendee
   }
 `;
 

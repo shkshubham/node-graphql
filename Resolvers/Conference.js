@@ -60,11 +60,25 @@ const details = async function(_, data) {
     return conference
 }
 
+const addAddenteeToConference = async function(_, data) {
+    await models.Attendee.findOne({
+        _id: data.id
+    }).then((newData) => {
+        console.log(newData)
+        models.Conference.findByIdAndUpdate(data.conference_id, { $push: { "attendees": newData } }, { safe: true, upsert: true },
+            function(err, model) {
+                console.log(model)
+            });
+    })
+    return data
+}
+
 module.exports = {
     create,
     remove,
     update,
     all,
     show,
-    details
+    details,
+    addAddenteeToConference
 }
