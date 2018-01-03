@@ -2,32 +2,6 @@ const { makeExecutableSchema } = require('graphql-tools');
 const resolvers = require('./resolvers');
 // Define your types here.
 const typeDefs = `
-  type Alcohol{
-    id: ID!,
-    type: String!
-  }
-
-  type Order{
-    id: ID!,
-    order_element: [Alcohol]
-  }  
-  
-  type Table{
-    id: ID!,
-    status: Int!,
-    order: [Order!]
-  }
-  
-  type Link {
-    id: ID!
-    url: String!
-    description: String!
-  }
-  type User {
-    id: ID!
-    name: String!
-    email: String
-  }
   type Conference {
     id: ID!,
     conference_id: Int!
@@ -42,33 +16,20 @@ const typeDefs = `
     name: String!
     conferences: [Conference!]
   }
-  input AuthProviderSignupData {
-    email: AUTH_PROVIDER_EMAIL
-  }
-
-  input AUTH_PROVIDER_EMAIL {
-    email: String!
-    password: String!
-  }
   type Query{
-      allLinks: [Link!]!,
-      allAlcohol: [Alcohol!],
-      allOrder: [Order!],
-      allTable: [Table!],
       allConferences:[Conference!],
-      allAttendee: [Attendee!],
+      allAttendees: [Attendee!],
       Conference(id:String):[Conference!],
       Attendee(id:ID):[Attendee!],
       ConferenceDetails(id: ID):[Conference]
   }
 
   type Mutation {
-    createLink(url: String!, description: String!): Link,
-    createUser(name: String!, authProvider: AuthProviderSignupData!): User,
     createConference(name: String!, city: String!, year: String!): Conference,
     createAttendee(name: String!): Attendee,
     updateConference(id:String!,name: String, city: String, year: String): Conference,
     deleteConference(id:String!): Conference,
+    deleteAttendee(id:String!): Attendee,    
     updateAttendee(id:ID!,name: String): Attendee
   }
 `;
