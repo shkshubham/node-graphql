@@ -34,11 +34,10 @@ const create = async(_, data) => {
     return newconference
 }
 
-const all = function() {
-    models.Conference.find({}, function(err, docs) {
-        return docs
-    })
-}
+const all = () => models.Conference.find({}, function(err, docs) {
+    return docs
+})
+
 
 const show = async function(_, data) {
     console.log(data)
@@ -60,6 +59,7 @@ const details = async function(_, data) {
     })
     return conference
 }
+
 module.exports = {
     create,
     remove,

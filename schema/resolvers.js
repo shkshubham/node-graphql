@@ -2,7 +2,6 @@ const models = require('../models/')
 const ConferenceResolver = require('../Resolvers/Conference')
 const AttendeeResolver = require('../Resolvers/Attendee')
 
-
 module.exports = {
     Query: {
         allConferences: ConferenceResolver.all,
