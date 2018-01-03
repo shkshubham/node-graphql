@@ -134,11 +134,13 @@ module.exports = {
             return newAttendee
         },
         updateConference: async(_, data) => {
-            await ios_model.Conference.findOne({
-                conference_id: data.id
-            }).then((conference) => {
-                console.log(conference)
-            })
+            conference = await ios_model.Conference.update({ conference_id: data.id }, data, function(err, raw) {
+                if (err) {
+                    console.log(err)
+                }
+                console.log(raw)
+            });
+            return data
         }
     }
 }
