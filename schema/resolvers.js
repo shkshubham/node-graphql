@@ -88,20 +88,11 @@ module.exports = {
 
         Conference: async function(_, data) {
             conference = []
-
-            if (data.id) {
-                await ios_model.Conference.findOne({
-                    conference_id: data.id
-                }).then((data) => {
-                    conference.push(data)
-                })
-            } else {
-                await ios_model.Conference.find({}).then((data) => {
-                    console.log(data)
-                    conference.push(data)
-                })
-            }
-
+            await ios_model.Conference.findOne({
+                conference_id: data.id
+            }).then((data) => {
+                conference.push(data)
+            })
             return conference
         },
     },
