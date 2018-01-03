@@ -56,6 +56,7 @@ const typeDefs = `
       allOrder: [Order!],
       allTable: [Table!],
       allConferences:[Conference!],
+      Conference(id:ID):[Conference!],      
       ConferenceDetails(id: ID):[Conference]
   }
 
@@ -64,7 +65,7 @@ const typeDefs = `
     createUser(name: String!, authProvider: AuthProviderSignupData!): User,
     createConference(name: String!, city: String!, year: String!): Conference,
     createAttendee(name: String!): Attendee,
-    
+    updateConference(id:ID,name: String, city: String, year: String): Conference
   }
 `;
 
