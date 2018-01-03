@@ -17,6 +17,10 @@ module.exports = {
         deleteConference: ConferenceResolver.remove,
         updateAttendee: AttendeeResolver.update,
         deleteAttendee: AttendeeResolver.remove,
-        addAttendeeToConference: ConferenceResolver.addAddenteeToConference
+        addAttendeeToConference: ConferenceResolver.addAddenteeToConference,
+        uploadFile:(_, {file}) =>{
+          console.log(file)
+          return file
+        }
     }
 }

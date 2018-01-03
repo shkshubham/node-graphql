@@ -4,7 +4,7 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
 const schema = require('./schema')
 const keys = require('./config/keys')
 const mongoose = require('mongoose')
-
+const AUE = require('apollo-upload-server')
 const app = express()
 app.use(bodyParser.json())
 
@@ -14,7 +14,7 @@ mongoose.connect(keys.mongodb.url, () => {
 });
 
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use('/graphql', graphqlExpress({ schema }))
+app.use('/graphql', AUE.apolloUploadExpress({ uploadDir:"./" }),graphqlExpress({ schema }))
 app.use('/graphiql', graphiqlExpress({
     endpointURL: '/graphql',
 }))
