@@ -76,6 +76,9 @@ module.exports = {
         allConferences: () => ios_model.Conference.find({}, function(err, docs) {
             return docs
         }),
+        allAttendee: () => ios_model.Attendee.find({}, function(err, docs) {
+            return docs
+        }),
         ConferenceDetails: async function(_, data) {
             conference = []
             await ios_model.Conference.findOne({
@@ -153,10 +156,9 @@ module.exports = {
             return data
         },
         deleteConference: async(_, data) => {
-            deleted_conference = []
+            var deleted_conference = {}
             await ios_model.Conference.findByIdAndRemove(data.id, (err, data) => {
-                console.log(data)
-                deleted_conference.push(data)
+                deleted_conference = data
                 console.log(deleted_conference)
             });
             return deleted_conference

@@ -56,6 +56,7 @@ const typeDefs = `
       allOrder: [Order!],
       allTable: [Table!],
       allConferences:[Conference!],
+      allAttendee: [Attendee!],
       Conference(id:String):[Conference!],
       Attendee(id:ID):[Attendee!],
       ConferenceDetails(id: ID):[Conference]
