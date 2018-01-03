@@ -147,6 +147,12 @@ module.exports = {
             return newAttendee
         },
         updateConference: async(_, data) => {
+            ios_model.Conference.update({ _id: data.id }, data, function(err, raw) {
+                if (err) {
+                    console.log(err);
+                }
+                console.log(raw)
+            });
             conference = await ios_model.Conference.update({ _id: data.id }, data, function(err, raw) {
                 if (err) {
                     console.log(err)
@@ -164,7 +170,7 @@ module.exports = {
             return deleted_conference
         },
         updateAttendee: async(_, data) => {
-            attendee = await ios_model.Attendee.update({ _id: data.id }, data, function(err, raw) {
+            await ios_model.Attendee.update({ id: data.id }, data, function(err, raw) {
                 if (err) {
                     console.log(err)
                 }
