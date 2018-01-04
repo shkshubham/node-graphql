@@ -37,7 +37,7 @@ const typeDefs = `
     name: String!
   }
   type Query{
-      allConferences:[Conference!],
+      allConferences(limit: Int):[Conference!],
       allAttendees: [Attendee!],
       Conference(id:String):[Conference!],
       Attendee(id:ID):[Attendee!],

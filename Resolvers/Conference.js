@@ -34,9 +34,17 @@ const create = async(_, data) => {
     return newconference
 }
 
-const all = () => models.Conference.find({}, function(err, docs) {
-    return docs
-})
+const all = async (_,{limit}) => {
+  var conference
+  if(limit){
+    conference = await models.Conference.find({}, function(err, docs) {}).limit(limit)
+    return conference
+  }
+  else{
+    conference = await models.Conference.find({}, function(err, docs) {})
+    return conference
+  }
+}
 
 
 const show = async function(_, data) {
