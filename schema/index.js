@@ -37,12 +37,12 @@ const typeDefs = `
     name: String!
   }
   type Query{
-      allConferences(limit: Int):[Conference!],
-      allAttendees(limit: Int): [Attendee!],
-      Conference(id:String):[Conference!],
-      Attendee(id:ID):[Attendee!],
-      ConferenceDetails(id: ID):[Conference],
-      allUser: [User],
+      allConferences(limit: Int):[Conference!]
+      allAttendees(limit: Int): [Attendee!]
+      Conference(id:String):[Conference!]
+      Attendee(id:ID):[Attendee!]
+      ConferenceDetails(id: ID):[Conference]
+      allUser: [User]
       profile: User
   }
 
