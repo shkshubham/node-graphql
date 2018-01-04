@@ -20,7 +20,6 @@ const typeDefs = `
     username: String!
     email: String!
     name: String!
-    password: String!
     created_at: String
   }
   type Conference {
