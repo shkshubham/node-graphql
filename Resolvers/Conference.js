@@ -34,10 +34,10 @@ const create = async(_, data) => {
     return newconference
 }
 
-const all = async (_,{limit}) => {
+const all = async (_,{limit,skip}) => {
   var conference
-  if(limit){
-    conference = await models.Conference.find({}, function(err, docs) {}).limit(limit)
+  if(limit || skip){
+    conference = await models.Conference.find({}, function(err, docs) {}).limit(limit).skip(skip)
     return conference
   }
   else{

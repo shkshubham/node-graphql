@@ -33,10 +33,10 @@ const create = async(_, data) => {
     return newAttendee
 }
 
-const all = async (_,{limit}) => {
+const all = async (_,{limit, skip}) => {
   var attendee
-  if(limit){
-    attendee = await models.Attendee.find({}, function(err, docs) {}).limit(limit)
+  if(limit || skip){
+    attendee = await models.Attendee.find({}, function(err, docs) {}).limit(limit).skip(skip)
     return attendee
   }
   else{

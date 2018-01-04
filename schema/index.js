@@ -37,15 +37,14 @@ const typeDefs = `
     name: String!
   }
   type Query{
-      allConferences(limit: Int):[Conference!]
-      allAttendees(limit: Int): [Attendee!]
+      allConferences(limit: Int,skip:Int):[Conference!]
+      allAttendees(limit: Int,skip:Int): [Attendee!]
       Conference(id:String):[Conference!]
       Attendee(id:ID):[Attendee!]
       ConferenceDetails(id: ID):[Conference]
       allUser: [User]
       profile: User
   }
-
   type Mutation {
     uploadFile(file: Upload!): Boolean!
     createConference(name: String!, city: String!, year: String!): Conference
