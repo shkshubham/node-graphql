@@ -2,6 +2,9 @@ const models = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const lodash = require('lodash');
+const pubsub = require('../config/pubsub')
+const SubscriptionKeys = require('../Subscriptions/keys')
+
 
 const register = async (_, data) =>{
   const saltRounds = 10;
@@ -9,6 +12,9 @@ const register = async (_, data) =>{
   newUser.password = await bcrypt.hash(newUser.password, saltRounds);
   const createUser = await new models.User(newUser).save()
   console.log(createUser)
+  var userWithoutPassword = lodash.pick(createUser, ['id', 'username','name','email','created_at'])
+  console.log(userWithoutPassword)
+  pubsub.publish(SubscriptionKeys.USER_REGISTERED, { userRegistered: { userWithoutPassword }});
   return createUser
 }
 const login = async (_, data, {SECRET}) =>{

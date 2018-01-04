@@ -1,14 +1,13 @@
 const ConferenceResolver = require('../Resolvers/Conference')
 const AttendeeResolver = require('../Resolvers/Attendee')
 const UserResolver = require('../Resolvers/User')
-const { PubSub } = require('graphql-subscriptions')
-
-const USER_ADDED = "USER_ADDED"
+const pubsub = require('../config/pubsub')
+const SubscriptionKeys = require('../Subscriptions/keys')
 
 module.exports = {
     Subscription: {
-      userAdded: {
-        subscribe: () => pubsub.asyncIterator(USER_ADDED),
+      userRegistered: {
+        subscribe: () => pubsub.asyncIterator(SubscriptionKeys.USER_REGISTERED),
       },
     },
     Query: {
@@ -32,11 +31,6 @@ module.exports = {
         uploadFile:(_, {file}) =>{
           console.log(file)
           return file
-        },
-        createUser:(_,{username})=>{
-          var user = data
-          pubsub.publish(USER_ADDED_KEY, { userAdded: { id: "123",username:username }});
-          return user
         }
     }
 }

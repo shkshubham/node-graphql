@@ -1,0 +1,5 @@
+const USER_REGISTERED = "USER_REGISTERED"
+
+module.exports = {
+  USER_REGISTERED
+}

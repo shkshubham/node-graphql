@@ -3,7 +3,7 @@ const resolvers = require('./resolvers');
 // Define your types here.
 const typeDefs = `
   type Subscription {
-    userAdded: User!
+    userRegistered: User
   }
   input Upload{
     name: String!
@@ -55,7 +55,6 @@ const typeDefs = `
     addAttendeeToConference(id:String!,conference_id:String!): Attendee
     register(username:String!,name:String!,email:String!,password:String!): User
     login(email:String!,password:String!): Token
-    createUser(username:String!): User!
   }
   schema {
     query: Query
