@@ -41,7 +41,7 @@ const typeDefs = `
       Conference(id:String):[Conference!]
       Attendee(id:ID):[Attendee!]
       ConferenceDetails(id: ID):[Conference]
-      allUser: [User]
+      allUser(limit:Int,skip:Int): [User]
       profile: User
   }
   type Mutation {

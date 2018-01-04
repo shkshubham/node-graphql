@@ -16,7 +16,8 @@ module.exports = {
         ConferenceDetails: ConferenceResolver.show,
         Conference: ConferenceResolver.show,
         Attendee: AttendeeResolver.show,
-        profile: UserResolver.profile
+        profile: UserResolver.profile,
+        allUser: UserResolver.all
     },
     Mutation: {
         createConference: ConferenceResolver.create,

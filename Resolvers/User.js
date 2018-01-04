@@ -53,8 +53,21 @@ const profile =  async (parent, _ , {user})=>{
   }
 }
 
+const all = async (_,{limit,skip})=>{
+  var users
+  if(limit || skip){
+    users = await models.User.find({}, function(err, docs) {}).limit(limit).skip(skip)
+    return users
+  }
+  else{
+    users = await models.User.find({}, function(err, docs) {})
+    return users
+  }
+}
+
 module.exports = {
   register,
   login,
-  profile
+  profile,
+  all
 }
