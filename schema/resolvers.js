@@ -1,6 +1,6 @@
-const models = require('../models/')
 const ConferenceResolver = require('../Resolvers/Conference')
 const AttendeeResolver = require('../Resolvers/Attendee')
+const UserResolver = require('../Resolvers/User')
 
 module.exports = {
     Query: {
@@ -9,6 +9,7 @@ module.exports = {
         ConferenceDetails: ConferenceResolver.show,
         Conference: ConferenceResolver.show,
         Attendee: AttendeeResolver.show,
+        profile: UserResolver.profile
     },
     Mutation: {
         createConference: ConferenceResolver.create,
@@ -18,6 +19,8 @@ module.exports = {
         updateAttendee: AttendeeResolver.update,
         deleteAttendee: AttendeeResolver.remove,
         addAttendeeToConference: ConferenceResolver.addAddenteeToConference,
+        register: UserResolver.register,
+        login: UserResolver.login,
         uploadFile:(_, {file}) =>{
           console.log(file)
           return file

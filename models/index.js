@@ -14,11 +14,34 @@ const AttendeeSchema = new Schema({
     name: String,
 });
 
+const UserSchema = new Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  name: String,
+  password: {
+    type: String,
+    required: true
+  },
+  created_at: {
+    type: Date,
+    default: Date.now
+  }
+})
 
+const User = mongoose.model("users", UserSchema);
 const Conference = mongoose.model("conferences", ConferenceSchema);
 const Attendee = mongoose.model("attendees", AttendeeSchema);
 
 module.exports = {
     Conference,
-    Attendee
+    Attendee,
+    User
 };

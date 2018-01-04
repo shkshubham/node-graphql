@@ -8,6 +8,14 @@ const typeDefs = `
     size: Int!
     path: String!
   }
+  type User{
+    id: String!
+    username: String!
+    email: String!
+    name: String!
+    password: String!
+    created_at: String
+  }
   type Conference {
     id: ID!,
     conference_id: Int!
@@ -26,7 +34,9 @@ const typeDefs = `
       allAttendees: [Attendee!],
       Conference(id:String):[Conference!],
       Attendee(id:ID):[Attendee!],
-      ConferenceDetails(id: ID):[Conference]
+      ConferenceDetails(id: ID):[Conference],
+      allUser: [User],
+      profile: User
   }
 
   type Mutation {
@@ -37,7 +47,9 @@ const typeDefs = `
     deleteConference(id:String!): Conference,
     deleteAttendee(id:String!): Attendee,
     updateAttendee(id:String!,conference_id:String,name: String): Attendee,
-    addAttendeeToConference(id:String!,conference_id:String!): Attendee
+    addAttendeeToConference(id:String!,conference_id:String!): Attendee,
+    register(username:String!,name:String!,email:String!,password:String!): User,
+    login(email:String!,password:String!): String
   }
 `;
 
