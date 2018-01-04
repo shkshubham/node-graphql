@@ -28,7 +28,11 @@ const login = async (_, data, {SECRET}) =>{
     }, SECRET, {
       expiresIn:'1y'
     });
-    return token
+    userObj = {
+      token: token,
+      email: user.email
+    }
+    return userObj
   }
   return null
 }

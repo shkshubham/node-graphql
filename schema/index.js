@@ -11,6 +11,10 @@ const typeDefs = `
     size: Int!
     path: String!
   }
+  type Token{
+    token: String
+    email: String
+  }
   type User{
     id: String!
     username: String!
@@ -52,7 +56,7 @@ const typeDefs = `
     updateAttendee(id:String!,conference_id:String,name: String): Attendee
     addAttendeeToConference(id:String!,conference_id:String!): Attendee
     register(username:String!,name:String!,email:String!,password:String!): User
-    login(email:String!,password:String!): String
+    login(email:String!,password:String!): Token
     createUser(username:String!): User!
   }
   schema {
