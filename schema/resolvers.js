@@ -3,12 +3,12 @@ const AttendeeResolver = require('../Resolvers/Attendee')
 const UserResolver = require('../Resolvers/User')
 const { PubSub } = require('graphql-subscriptions')
 
-const USER_ADDED_KEY = "USER_ADDED_SUCCESS"
+const USER_ADDED = "USER_ADDED"
 
 module.exports = {
     Subscription: {
       userAdded: {
-        subscribe: () => pubsub.asyncIterator(USER_ADDED_KEY),
+        subscribe: () => pubsub.asyncIterator(USER_ADDED),
       },
     },
     Query: {
