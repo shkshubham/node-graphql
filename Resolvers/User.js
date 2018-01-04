@@ -12,8 +12,6 @@ const register = async (_, data) =>{
   return createUser
 }
 const login = async (_, data, {SECRET}) =>{
-  console.log(SECRET)
-  console.log(data)
   var user = {};
   user = await models.User.findOne({
     email: data.email
