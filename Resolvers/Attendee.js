@@ -33,9 +33,18 @@ const create = async(_, data) => {
     return newAttendee
 }
 
-const all = () => models.Attendee.find({}, function(err, docs) {
-    return docs
-})
+const all = async (_,{limit}) => {
+  var attendee
+  if(limit){
+    attendee = await models.Attendee.find({}, function(err, docs) {}).limit(limit)
+    return attendee
+  }
+  else{
+    attendee = await models.Attendee.find({}, function(err, docs) {})
+    return attendee
+  }
+}
+
 
 const show = async function(_, data) {
     attendee = []
