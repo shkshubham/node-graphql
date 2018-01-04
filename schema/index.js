@@ -4,6 +4,7 @@ const resolvers = require('./resolvers');
 const typeDefs = `
   type Subscription {
     userRegistered: User
+    conferenceAdded: Conference
   }
   input Upload{
     name: String!

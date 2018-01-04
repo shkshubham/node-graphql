@@ -1,4 +1,6 @@
 const models = require('../models/')
+const pubsub = require('../config/pubsub')
+const SubscriptionKeys = require('../Subscriptions/keys')
 
 const remove = async function(_, data) {
     var deleted_conference = {}
@@ -31,6 +33,7 @@ const create = async(_, data) => {
     newconference.save(function(err, conference) {
         if (err) return handleError(err);
     })
+    pubsub.publish(SubscriptionKeys.CONFERENCE_ADDED, { conferenceAdded: { newconference }});
     return newconference
 }
 

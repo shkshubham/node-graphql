@@ -7,8 +7,11 @@ const SubscriptionKeys = require('../Subscriptions/keys')
 module.exports = {
     Subscription: {
       userRegistered: {
-        subscribe: () => pubsub.asyncIterator(SubscriptionKeys.USER_REGISTERED),
+        subscribe: () => pubsub.asyncIterator(SubscriptionKeys.USER_REGISTERED)
       },
+      conferenceAdded:{
+        subscribe: () => pubsub.asyncIterator(SubscriptionKeys.CONFERENCE_ADDED)
+      }
     },
     Query: {
         allConferences: ConferenceResolver.all,
