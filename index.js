@@ -18,10 +18,7 @@ const auth = async (req, res)=>{
       req.user = user
     }
     catch(err){
-      return res.status(403).send({
-        success: false,
-        message: 'No token provided.'
-    })
+      console.log("login")
     }
     req.next()
 }
